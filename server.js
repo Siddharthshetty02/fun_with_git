@@ -16,6 +16,15 @@ const quotes = [
   "Talk is cheap. Show me the code. – Linus Torvalds"
 ];
 
+const gitFacts = [
+  "Git was created in 2005 by Linus Torvalds in just 10 days to support Linux kernel development!",
+  "The name 'Git' was chosen by Linus Torvalds jokingly referring to himself: 'I name all my projects after myself. First Linux, now Git.'",
+  "Git stores commits as full snapshots, using directed acyclic graphs (DAGs) rather than diff deltas.",
+  "Every Git commit ID is a cryptographic hash, ensuring repository history cannot be altered without detection.",
+  "Over 90% of developers worldwide rely on Git as their primary version control system."
+];
+
+
 const MIME_TYPES = {
   '.html': 'text/html; charset=UTF-8',
   '.css': 'text/css; charset=UTF-8',
@@ -56,6 +65,13 @@ const server = http.createServer((req, res) => {
     const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ quote: randomQuote }));
+    return;
+  }
+
+  if (pathname === '/api/git-fact' && req.method === 'GET') {
+    const randomFact = gitFacts[Math.floor(Math.random() * gitFacts.length)];
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ fact: randomFact }));
     return;
   }
 

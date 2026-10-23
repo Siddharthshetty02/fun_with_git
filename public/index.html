@@ -79,6 +79,30 @@
           <span class="placeholder">Click the button to fetch a quote.</span>
         </div>
       </section>
+
+      <!-- Card 3: Git Trivia (Added in test_issue) -->
+      <section class="card" id="card-fact">
+        <div class="card-header">
+          <span class="method-tag git">GIT</span>
+          <h2>Git Trivia &amp; Facts</h2>
+        </div>
+        <p class="card-desc">Fetch interesting Git history facts from <code>/api/git-fact</code>.</p>
+
+        <div class="action-row">
+          <button id="btn-fact" class="btn secondary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="16" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+            <span>Learn a Git Fact</span>
+          </button>
+        </div>
+
+        <div id="fact-result" class="result-box empty">
+          <span class="placeholder">Click to discover a Git trivia fact!</span>
+        </div>
+      </section>
     </div>
 
     <!-- Live Server Details Panel -->
