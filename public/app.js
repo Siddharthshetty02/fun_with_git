@@ -131,6 +131,40 @@ btnQuote.addEventListener('click', async () => {
   }
 });
 
+// Handle GET Git Fact (Added in test_issue branch)
+const btnFact = document.getElementById('btn-fact');
+const factResult = document.getElementById('fact-result');
+
+if (btnFact && factResult) {
+  btnFact.addEventListener('click', async () => {
+    const originalBtnText = btnFact.innerHTML;
+    btnFact.disabled = true;
+    btnFact.innerHTML = '<span>Learning...</span>';
+
+    const startTime = performance.now();
+    try {
+      const res = await fetch('/api/git-fact');
+      const latency = Math.round(performance.now() - startTime);
+      diagLatency.textContent = `${latency} ms`;
+
+      const data = await res.json();
+      updateRawPreview(data);
+
+      factResult.className = 'result-box success';
+      factResult.innerHTML = `
+        <span>📌 ${data.fact}</span>
+        <span class="time-tag">Fetched in ${latency}ms</span>
+      `;
+    } catch (err) {
+      factResult.className = 'result-box';
+      factResult.innerHTML = `<span style="color: #f43f5e;">Error fetching Git trivia.</span>`;
+    } finally {
+      btnFact.disabled = false;
+      btnFact.innerHTML = originalBtnText;
+    }
+  });
+}
+
 btnRefreshStatus.addEventListener('click', checkServerStatus);
 
 // Initialize on page load
