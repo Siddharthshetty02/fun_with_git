@@ -54,6 +54,7 @@ const server = http.createServer((req, res) => {
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({
       status: 'online',
+      version: '1.1.0',
       message: 'Backend is up and running smoothly!',
       uptimeSeconds: Math.floor(process.uptime()),
       timestamp: new Date().toISOString()
