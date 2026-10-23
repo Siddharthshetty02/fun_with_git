@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minimal Full-Stack Web App</title>
+  <meta name="description" content="A simple, fast, and modern web application with a lightweight Node.js backend." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="background-glow"></div>
+
+  <main class="container">
+    <header class="hero">
+      <div class="badge" id="status-badge">
+        <span class="status-dot"></span>
+        <span id="status-text">Connecting to backend...</span>
+      </div>
+      <h1 class="title">Simple Web Page &amp; Backend</h1>
+      <p class="subtitle">
+        A clean, lightweight frontend communicating directly with a native Node.js API server.
+      </p>
+    </header>
+
+    <div class="grid">
+      <!-- Card 1: Interactive POST Request -->
+      <section class="card" id="card-greet">
+        <div class="card-header">
+          <span class="method-tag post">POST</span>
+          <h2>Send Data to Server</h2>
+        </div>
+        <p class="card-desc">Type your name below to send a JSON payload to <code>/api/greet</code>.</p>
+        
+        <form id="greet-form" class="form">
+          <div class="input-group">
+            <input 
+              type="text" 
+              id="user-name" 
+              placeholder="Enter your name (e.g. Alex)" 
+              autocomplete="off" 
+              required 
+            />
+            <button type="submit" id="btn-submit" class="btn primary">
+              <span>Send</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </div>
+        </form>
+
+        <div id="greet-result" class="result-box empty">
+          <span class="placeholder">Waiting for your input...</span>
+        </div>
+      </section>
+
+      <!-- Card 2: Interactive GET Request -->
+      <section class="card" id="card-quote">
+        <div class="card-header">
+          <span class="method-tag get">GET</span>
+          <h2>Fetch from Server</h2>
+        </div>
+        <p class="card-desc">Request dynamic data on-demand from <code>/api/quote</code>.</p>
+
+        <div class="action-row">
+          <button id="btn-quote" class="btn secondary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.19"></path>
+            </svg>
+            <span>Get Random Quote</span>
+          </button>
+        </div>
+
+        <div id="quote-result" class="result-box empty">
+          <span class="placeholder">Click the button to fetch a quote.</span>
+        </div>
+      </section>
+    </div>
+
+    <!-- Live Server Details Panel -->
+    <section class="card full-width">
+      <div class="card-header">
+        <span class="method-tag info">INFO</span>
+        <h2>Server Diagnostics</h2>
+        <button id="btn-refresh-status" class="icon-btn" title="Refresh diagnostics">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="diagnostics-grid">
+        <div class="diag-item">
+          <span class="diag-label">Server Status</span>
+          <span class="diag-val" id="diag-status">Checking...</span>
+        </div>
+        <div class="diag-item">
+          <span class="diag-label">Uptime</span>
+          <span class="diag-val" id="diag-uptime">-</span>
+        </div>
+        <div class="diag-item">
+          <span class="diag-label">Response Time</span>
+          <span class="diag-val" id="diag-latency">-</span>
+        </div>
+        <div class="diag-item">
+          <span class="diag-label">Endpoint Host</span>
+          <span class="diag-val" id="diag-host">localhost:3000</span>
+        </div>
+      </div>
+      <div class="code-preview">
+        <div class="code-header">
+          <span>Raw Response Preview</span>
+          <span id="response-timestamp">--:--:--</span>
+        </div>
+        <pre><code id="raw-json">// Raw server payload will appear here</code></pre>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>Built with native HTML, CSS, JavaScript, and Node.js standard library.</p>
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
